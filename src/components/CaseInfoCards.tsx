@@ -20,16 +20,16 @@ export const CaseInfoCards: React.FC<CaseInfoCardsProps> = ({ caseData }) => {
         <div className="space-y-3">
           <div>
             <p className="text-[10px] text-gray-400 font-bold uppercase">Full Name</p>
-            <p className="text-sm font-semibold text-gray-700">{caseData.customer.name}</p>
+            <p className="text-sm font-semibold text-gray-700">{caseData?.customer?.name}</p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-[10px] text-gray-400 font-bold uppercase">CNIC</p>
-              <p className="text-sm font-semibold text-gray-700">{caseData.customer.cnic}</p>
+              <p className="text-sm font-semibold text-gray-700">{caseData?.customer?.cnic}</p>
             </div>
             <div>
               <p className="text-[10px] text-gray-400 font-bold uppercase">Phone</p>
-              <p className="text-sm font-semibold text-gray-700">{caseData.customer.phone}</p>
+              <p className="text-sm font-semibold text-gray-700">{caseData?.customer?.phone}</p>
             </div>
           </div>
         </div>
@@ -46,19 +46,19 @@ export const CaseInfoCards: React.FC<CaseInfoCardsProps> = ({ caseData }) => {
         <div className="grid grid-cols-2 gap-y-4 gap-x-2">
           <div>
             <p className="text-[10px] text-gray-400 font-bold uppercase">Block</p>
-            <p className="text-sm font-semibold text-gray-700">{caseData.property.block}</p>
+            <p className="text-sm font-semibold text-gray-700">{caseData?.property?.block}</p>
           </div>
           <div>
             <p className="text-[10px] text-gray-400 font-bold uppercase">Phase</p>
-            <p className="text-sm font-semibold text-gray-700">{caseData.property.phase}</p>
+            <p className="text-sm font-semibold text-gray-700">{caseData?.property?.phase}</p>
           </div>
           <div>
             <p className="text-[10px] text-gray-400 font-bold uppercase">Plot No</p>
-            <p className="text-sm font-semibold text-gray-700">{caseData.property.plotNo}</p>
+            <p className="text-sm font-semibold text-gray-700">{caseData?.property?.plotNo}</p>
           </div>
           <div>
             <p className="text-[10px] text-gray-400 font-bold uppercase">Size</p>
-            <p className="text-sm font-semibold text-gray-700">{caseData.property.size}</p>
+            <p className="text-sm font-semibold text-gray-700">{caseData?.property?.size}</p>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ export const CaseInfoCards: React.FC<CaseInfoCardsProps> = ({ caseData }) => {
             </div>
             <h3 className="font-bold text-gray-800 text-sm uppercase tracking-tight">Financial Status</h3>
           </div>
-          {caseData.financials.ledgerVerified ? (
+          {caseData?.financials?.ledgerVerified ? (
             <ShieldCheck className="w-5 h-5 text-emerald-500" />
           ) : (
             <AlertCircle className="w-5 h-5 text-amber-500" />
@@ -81,15 +81,15 @@ export const CaseInfoCards: React.FC<CaseInfoCardsProps> = ({ caseData }) => {
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <p className="text-xs text-gray-500 font-medium">Net Price</p>
-            <p className="text-sm font-bold text-gray-900">PKR {caseData.financials.netPrice.toLocaleString()}</p>
+            <p className="text-sm font-bold text-gray-900">PKR {caseData?.financials?.netPrice?.toLocaleString()}</p>
           </div>
           <div className="flex justify-between items-center">
             <p className="text-xs text-gray-500 font-medium">Received</p>
-            <p className="text-sm font-bold text-emerald-600">PKR {caseData.financials.received.toLocaleString()}</p>
+            <p className="text-sm font-bold text-emerald-600">PKR {caseData?.financials?.received?.toLocaleString()}</p>
           </div>
           <div className="pt-2 border-t border-gray-100 flex justify-between items-center">
             <p className="text-xs text-gray-900 font-bold">Outstanding</p>
-            <p className="text-sm font-black text-red-600">PKR {caseData.financials.outstanding.toLocaleString()}</p>
+            <p className="text-sm font-black text-red-600">PKR {caseData?.financials?.outstanding?.toLocaleString()}</p>
           </div>
         </div>
       </div>

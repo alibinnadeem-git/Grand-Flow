@@ -42,6 +42,10 @@ export default function App() {
         setUser(userData);
         if (userData) fetchCase();
         else setLoading(false);
+      })
+      .catch(err => {
+        console.error("Auth check failed:", err);
+        setLoading(false);
       });
   }, []);
 
@@ -236,7 +240,18 @@ export default function App() {
     );
   }
 
-  if (!activeCase) return <div>Error loading case.</div>;
+  if (!activeCase) return (
+    <div className="h-screen flex items-center justify-center bg-gray-50 p-6">
+      <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 text-center max-w-sm">
+        <ShieldAlert className="w-12 h-12 text-red-500 mx-auto mb-4" />
+        <h2 className="text-xl font-black text-gray-900 mb-2">Error Loading Case</h2>
+        <p className="text-gray-500 text-sm mb-6">We couldn't retrieve the case data. Please try logging in again or contact support.</p>
+        <button onClick={handleLogout} className="w-full bg-gray-900 text-white py-3 rounded-xl font-bold text-sm">
+          Return to Login
+        </button>
+      </div>
+    </div>
+  );
 
   const canForward = () => {
     const roleMapping: Record<number, string[]> = {
@@ -285,8 +300,8 @@ export default function App() {
               </div>
               {sidebarOpen && (
                 <div className="overflow-hidden">
-                  <p className="text-xs font-bold truncate">{user.name}</p>
-                  <p className="text-[10px] text-gray-500 truncate">{user.dept}</p>
+                  <p className="text-xs font-bold truncate">{user?.name}</p>
+                  <p className="text-[10px] text-gray-500 truncate">{user?.dept}</p>
                 </div>
               )}
             </div>
@@ -345,20 +360,20 @@ export default function App() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <span className="px-2 py-1 bg-blue-100 text-blue-700 text-[10px] font-black rounded uppercase tracking-widest">
-                        {activeCase.type}
+                        {activeCase?.type}
                       </span>
                       <span className={cn(
                         "px-2 py-1 text-[10px] font-black rounded uppercase tracking-widest",
-                        activeCase.priority === 'URGENT' ? "bg-red-100 text-red-700" :
-                        activeCase.priority === 'HIGH' ? "bg-orange-100 text-orange-700" : "bg-gray-100 text-gray-700"
+                        activeCase?.priority === 'URGENT' ? "bg-red-100 text-red-700" :
+                        activeCase?.priority === 'HIGH' ? "bg-orange-100 text-orange-700" : "bg-gray-100 text-gray-700"
                       )}>
-                        {activeCase.priority} PRIORITY
+                        {activeCase?.priority} PRIORITY
                       </span>
                     </div>
                     <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">
-                      {activeCase.caseNo}
+                      {activeCase?.caseNo}
                     </h1>
-                    <p className="text-gray-500 font-medium">{activeCase.subject}</p>
+                    <p className="text-gray-500 font-medium">{activeCase?.subject}</p>
                   </div>
 
                   <div className="flex items-center gap-3">

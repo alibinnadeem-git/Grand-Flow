@@ -43,10 +43,10 @@ export const WorkflowStepper: React.FC<WorkflowStepperProps> = ({ currentStageId
                   isCurrent ? "text-blue-700 underline underline-offset-4 decoration-2" : 
                   isCompleted ? "text-gray-700" : "text-gray-400"
                 )}>
-                  {stage.name}
+                  {stage?.name}
                 </span>
                 <span className="text-[10px] text-gray-400 font-medium uppercase">
-                  {stage.dept}
+                  {stage?.dept}
                 </span>
               </div>
             </div>
