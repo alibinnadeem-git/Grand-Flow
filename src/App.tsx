@@ -9,6 +9,7 @@ import {
   Bell, 
   Plus, 
   ChevronRight, 
+  ChevronLeft,
   Send, 
   ShieldAlert,
   CheckCircle2,
@@ -272,14 +273,22 @@ export default function App() {
     <div className="flex h-screen bg-gray-50 font-sans text-gray-900 overflow-hidden">
       {/* Sidebar */}
       <aside className={cn(
-        "bg-gray-900 text-white transition-all duration-300 flex flex-col",
+        "bg-gray-900 text-white transition-all duration-300 flex flex-col z-30",
         sidebarOpen ? "w-64" : "w-20"
       )}>
-        <div className="p-6 flex items-center gap-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
-            <ShieldCheck className="text-white w-5 h-5" />
+        <div className="p-6 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 overflow-hidden">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
+              <ShieldCheck className="text-white w-5 h-5" />
+            </div>
+            {sidebarOpen && <span className="font-black text-lg tracking-tighter whitespace-nowrap">GRAND FLOW</span>}
           </div>
-          {sidebarOpen && <span className="font-black text-lg tracking-tighter">GRAND FLOW</span>}
+          <button 
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-1.5 rounded-lg hover:bg-gray-800 text-gray-400 transition-colors"
+          >
+            {sidebarOpen ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+          </button>
         </div>
 
         <nav className="flex-1 px-4 space-y-2 mt-4">
@@ -296,7 +305,7 @@ export default function App() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold text-xs">
-                {(user.name || '').split(' ').map(n => n[0]).join('')}
+                {(user?.name || '').split(' ').map(n => n[0]).join('')}
               </div>
               {sidebarOpen && (
                 <div className="overflow-hidden">
@@ -315,9 +324,9 @@ export default function App() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col overflow-hidden">
+      <main className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Header */}
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0">
+        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0 relative z-20">
           <div className="flex items-center gap-4 flex-1">
             <div className="relative max-w-md w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -509,7 +518,7 @@ function SidebarItem({ icon, label, active = false, badge, onClick, collapsed }:
         </span>
       )}
       {collapsed && (
-        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none z-50 whitespace-nowrap">
+        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 z-50 whitespace-nowrap pointer-events-none">
           {label}
         </div>
       )}
