@@ -1,0 +1,5 @@
+{
+  "name": "Grand Case Flow",
+  "description": "Digital workflow and minute-sheet system for Grand City CSD case management, featuring compliance gates and executive approval routing.",
+  "requestFramePermissions": []
+}
